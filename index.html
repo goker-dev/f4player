@@ -2,26 +2,28 @@
 <html lang="en"> 
     <head>
         <meta charset="UTF-8" />
-        <title>f4Player v1.3</title>
+        <title>f4Player v1.3.5</title>
         <meta name="description" content="Free, Small, Quick, Customizable and the Bestest FLV Player on Internet!" />
         <meta name="keywords" content="f4player, flash, video, player, flv player, f4v player, mp4 player" />
         <link type="text/plain" rel="author" href="http://gokercebeci.com/humans.txt" />
         <link rel="shortcut icon" href="http://gokercebeci.com/favicon.ico" type="image/x-icon" />
         <style>
             body { margin: 0; padding: 0; color:#333; font: normal 13px/1.264 sans-serif; }
+            img { border:0 }
+            .clearfix { clear:both; }
             #devcontainer { margin: 20px auto; padding: 0 10px; width: 940px; }
-            .codeblock {
-                margin: 5px 0;
-                padding:10px;
-                color: #ddd;
-                border: 2px solid #000;
+            pre, code { 
+                display: block;
+                padding: 10px;
+                color: #eee;
+                border: 1px solid #222;
                 background: #333;
+                font-family: monospace, monospace; 
+                _font-family: 'courier new', monospace; 
+                font-size: 1em;
             }
-            .codeblock p{padding-top:10px; }
-            h1 { color: #b11; text-align: center; }
-            pre { margin:0; padding:0; }
-            #area { float:left; width: 460px; }
-            .desc { float:right; width: 460px; }
+            #area { float:left; width: 480px; }
+            .desc { float:right; width: 440px; }
             .signature a { color:#555; text-decoration:none; }
             .signature img { margin-right:5px; vertical-align: middle; }
         </style>
@@ -33,26 +35,49 @@
         <div id="devcontainer">
             <!-- development area -->
 
-            <!-- DESCRIPTION -->
-            <div class="desc">
-                <p>
-                <b>f4Player</b> is an open source flash (AS3) <b>video</b>/<b>stream</b> player and library project. It is so small that it is only 13kb and totally free under LGPL license.</p>
-                <p>I'm still developing it for <b>HTML5</b> support and <b>JS interface</b>.</p>
-                <p>I've only tested it with <b>flv</b>, <b>f4v</b>, <b>mp4</b>, <b>stream</b>, <b>live stream</b>, <b>subscribed CDN</b> and it works enough for me for now!</p>
-                <p>It is under <a href="http://www.gnu.org/licenses/lgpl.html">LGPL</a> License.</p>
-                <p class="signature"><a href="http://gokercebeci.com/dev/" title="developer">
-                        <img src="http://geticon.org/of/gokercebeci.com" alt="developer" />
-                        goker.cebeci, the developer</a></p>
-                <p class="signature"><a href="https://github.com/gokercebeci/f4player">
-                        <img src="http://geticon.org/of/github.com" alt="github" />
-                        download or fork it on github</a></p>
-                <br/>
-                <h3>USAGE</h3>
-                <div class="codeblock">
-                    <code>
-                    
-                    &lt;object id="f4Player" width="460" height="260" type="application/x-shockwave-flash" data="player.swf?v1.3"&gt; <br/>
-                    &nbsp; &lt;param name="movie" value="player.swf?v1.3" /&gt; <br/>
+            <!-- SAMPLE -->
+            <section>
+                <h2>SAMPLE</h2>
+                <!-- DESCRIPTION -->
+                <div class="desc">
+                    <h1>f4Player v1.3.5 "COMING SOON!!!"</h1>
+                    <i>Free, Small, Quick, Customizable and the Bestest <b>FLV Player</b> on Internet!</i>
+                    <p>
+                        <b>f4Player</b> is an open source flash (AS3) <b>video</b>/<b>stream</b> player and library project. It is so small that it is only 13kb and totally free under GPL license.</p>
+                    <p>A few years ago I wanted to play a video (flv) on my webpage and I developed a realy small, simple flv player and I'm still developing it for <b>HTML5</b> support and <b>JS interface</b>.</p>
+                    <p>I've only tested it with <b>flv</b>, <b>f4v</b>, <b>mp4</b>, <b>stream</b>, <b>live stream</b>, <b>subscribed CDN</b> and it works enough for me for now!</p>
+                    <p>It is under <a href="http://www.gnu.org/licenses/gpl.html">GPLv3 License</a>.</p>
+                    <p class="signature"><a href="http://gokercebeci.com/dev/" title="developer">
+						<img src="http://geticon.org/of/gokercebeci.com" alt="developer" />
+						goker.cebeci, the developer</a></p>
+                    <!--<p class="signature"><a href="http://gokercebeci.com/dev/pay/?product=f4player">
+						<img src="http://geticon.org/of/paypal.com" alt="github" />
+						buy the player with source ($9.99)</a></p>-->
+                </div>
+                <!-- /DESCRIPTION -->
+
+                <div id="areas">
+                    <h3>f4Player</h3>
+                    <div id="player">                        
+                        <embed type="application/x-shockwave-flash" src="player.swf?v1.3.5" width="480" id="f4Player" height="270" flashvars="skin=skins/mySkin.swf&thumbnail=thumbnail.jpg&video=http://f4player.googlecode.com/files/inhibited-island.mp4" allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000"/>
+                        <noembed>
+                            You need Adobe Flash Player to watch this video. <br> 
+                            <a href="http://get.adobe.com/flashplayer/">Download it from Adobe.</a>
+                            <a href="http://gokercebeci.com/dev/f4player" title="flv player">flv player</a>
+                        </noembed>
+                    </div>
+                    <p>* f4Player write own log on browser's "console".</p>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+            <!-- SAMPLE -->
+
+            <!-- USAGE -->
+            <section>
+                <h2>USAGE</h2>
+                <code>
+                    &lt;object id="f4Player" width="480" height="270" type="application/x-shockwave-flash" data="player.swf?v1.3.5"&gt; <br/>
+                    &nbsp; &lt;param name="movie" value="player.swf?v1.3.5" /&gt; <br/>
                     &nbsp; &lt;param name="quality" value="high" /&gt; <br/>
                     &nbsp; &lt;param name="menu" value="false" /&gt; <br/>
                     &nbsp; &lt;param name="scale" value="noscale" /&gt; <br/>
@@ -62,52 +87,40 @@
                     &nbsp; &lt;param name="cachebusting" value="false"&gt; <br/>
                     &nbsp; &lt;param name="flashvars"
                     &nbsp; value="skin=[SKIN_FILE]&video=[VIDEO_FILE]"/&gt; <br/>
-                    &nbsp; &lt;a href="http://www.adobe.com/go/getflash"&gt; <br/>
-                    &nbsp; &nbsp; &lt;img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/&gt; <br/>
-                    &nbsp; &lt;/a&gt; <br/>
-                    &nbsp; &lt;a href="http://gokercebeci.com/dev/flvplayer" title="flv player"&gt;flv player&lt;/a&gt; <br/>
+                    &nbsp; &lt;a href="http://www.adobe.com/go/flashplayer/"&gt;Download it from Adobe.&lt;/a&gt; <br/>
+                    &nbsp; &lt;a href="http://gokercebeci.com/dev/f4player" title="flv player"&gt;flv player&lt;/a&gt; <br/>
                     &lt;/object&gt;
-                    </code>
-                </div>                
-                <h3>PARAMETERS</h3>
-                <div class="codeblock">
-<pre>
-skin=                   => skin file (swf)
-stream=rtmp://          => stream url
-streamname=livestream   => stream name
-live=1                  => default value 0
-subscribe=1             => default value 0
-thumbnail=null          => thumbnail image
-video=myvideo.mp4       => video file
-autoplay=1              => default value 0
-</pre>
-                </div>  
-            </div>
-            <!-- /DESCRIPTION -->
+                </code>
+                or
+                <code>
+                    &lt;embed type="application/x-shockwave-flash" src="player.swf?v1.3.5" id="f4Player" width="480" height="270" flashvars="skin=[SKIN_FILE]&video=[VIDEO_FILE]" allowscriptaccess="always" allowfullscreen="true" bgcolor="#000000"/&gt;  <br> 
+                    &lt;noembed&gt; <br> 
+                    &nbsp;&nbsp; You need Adobe Flash Player to watch this video. <br> 
+                    &nbsp;&nbsp; &lt;a href="http://get.adobe.com/flashplayer/"&gt;Download it from Adobe.&lt;/a&gt; <br> 
+                    &nbsp;&nbsp; &lt;a href="http://gokercebeci.com/dev/f4player" title="flv player"&gt;flv player&lt;/a&gt; <br> 
+                    &lt;/noembed&gt;
+                </code>
+            </section>
+            <!-- /USAGE -->
 
-            <div id="areas">
-                <h3>f4Player v1.3 - RTMP Stream</h3>
-                <div id="player">
-		            <object id="f4Player" width="460" height="260" type="application/x-shockwave-flash" data="player.swf?v1.3"> 
-		            <param name="movie" value="player.swf?v1.3" /> 
-		            <param name="quality" value="high" /> 
-		            <param name="menu" value="false" /> 
-		            <param name="scale" value="noscale" /> 
-		            <param name="allowfullscreen" value="true">
-		            <param name="allowscriptaccess" value="always">
-		            <param name="swlivevonnect" value="true" /> 
-		            <param name="cachebusting" value="false">
-		            <param name="flashvars" value="skin=skins/mySkin.swf&thumbnail=thumbnail.jpg&video=http://f4player.googlecode.com/files/inhibited-island.mp4"/> 
-		            <a href="http://www.adobe.com/go/getflash"> 
-			            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/> 
-		            </a> 
-		            <a href="http://gokercebeci.com/dev/flvplayer" title="flv player">flv player</a> 
-		            </object> 
-	            </div>
-                <p>* f4Player write own log on browser's "console".</p>
-            </div>
+            <!-- OPTIONS -->
+            <section>
+                <h2>OPTIONS</h2>
+                <pre>
+                    skin=                   => skin file (swf)
+                    stream=rtmp://          => stream url
+                    streamname=livestream   => stream name
+                    live=1                  => default value 0
+                    subscribe=1             => default value 0
+                    thumbnail=null          => thumbnail image
+                    video=myvideo.mp4       => video file
+                    autoplay=1              => default value 0
+                </pre>
+            </section>
+            <!-- /OPTIONS -->
 
             <!-- /development area -->
         </div>
     </body>
 </html> 
+
