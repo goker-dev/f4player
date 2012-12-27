@@ -19,29 +19,19 @@ package
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.media.Video;
-	//import flash.geom.Rectangle;
 	
 	public class mySkin extends MovieClip
 	{
 		var player:PlayerInterface;
 		var info:Object = new Object();
 		var fullscreen:Boolean = true;
-		//var progress:Boolean=false;
 		var playing:Boolean = false;
-		//var rectangle:Rectangle; // for seeker
-		//var padding: int = 10;
-		//var barwidth:Number;
-		
 		var volumeCache:Number;
-		
 		var status:String;
-		
 		var W:int = 480;
 		var H:int = 270;
-		
 		var video:String;
 		var image:MovieClip = new MovieClip();
-		
 		var seeking:Boolean = false;
 		
 		public function mySkin()
@@ -60,8 +50,6 @@ package
 			nav.pauseButton.visible = false;
 			nav.seeker.visible = false;
 			buffering.visible = false;
-			//nav.visible = false;
-			//var togglepause:Boolean = false;
 			
 			//thumbnail [
 			if (thumbnail)
@@ -83,7 +71,6 @@ package
 				info = i;
 				nav.progressBar.width = (info.progress * nav.bar.width);
 				nav.playingBar.width = (info.playing * nav.bar.width);
-				//nav.seeker.x = nav.playingBar.x + (info.playing * W);
 				nav.notify.text = formatTime(info.time) + " / " + formatTime(info.duration);
 				
 				if (status != info.status)
@@ -102,7 +89,6 @@ package
 							stopEvent(new MouseEvent(MouseEvent.CLICK));
 							break;
 						case "NetStream.Play.Start": 
-							//nav.seeker.visible = true;
 							image.visible = false;
 							buffering.visible = false;
 							break;
@@ -151,7 +137,6 @@ package
 			// AUTOPLAY;
 			if (autoplay)
 			{
-				//var clicker:Function = playEvent;
 				playEvent(new MouseEvent(MouseEvent.CLICK));
 			}
 			
@@ -169,7 +154,6 @@ package
 			{
 				trace('stopEvent');
 				playing = false;
-				//overButton.visible = !playing;
 				nav.playButton.visible = !playing;
 				nav.pauseButton.visible = playing;
 				buffering.visible = playing;
@@ -178,69 +162,35 @@ package
 //═ HIDE CONTROLS ═════════════════════════════════════════════════════════════
 			var controlDisplayEvent:Function = function(e:Event):void
 			{
-				//nav.visible = (e.type == 'mouseOver' && playing);
 				nav.y = e.type == 'mouseOver' || !playing ? overlay.height - 26 : overlay.height + 8;
 			};
 			overlay.addEventListener(MouseEvent.MOUSE_OVER, controlDisplayEvent);
 			overlay.addEventListener(MouseEvent.MOUSE_OUT, controlDisplayEvent);
 			nav.addEventListener(MouseEvent.MOUSE_OVER, controlDisplayEvent);
-			//nav.addEventListener(MouseEvent.MOUSE_OUT, controlDisplayEvent);
+			nav.addEventListener(MouseEvent.MOUSE_OUT, controlDisplayEvent);
 //═ SEEK ══════════════════════════════════════════════════════════════════════
 			var playingBarEvent:Function = function(e:MouseEvent):void
 			{
-				var point:Number = e.localX * info.playing;
-				var seekpoint:Number = (point / 100) * info.duration;
-				player.Seek(seekpoint);
+				if(e.type == "click" || e.buttonDown == true){
+					var point:Number = e.localX * info.playing;
+					var seekpoint:Number = (point / 100) * info.duration;
+					player.Seek(seekpoint);
+				}
 			};
 			nav.playingBar.buttonMode = true;
 			nav.playingBar.addEventListener(MouseEvent.CLICK, playingBarEvent);
+			nav.playingBar.addEventListener(MouseEvent.MOUSE_MOVE, playingBarEvent);
 			var progressBarEvent:Function = function(e:MouseEvent):void
 			{
-				var point:Number = e.localX * info.progress;
-				var seekpoint:Number = (point / 100) * info.duration;
-				player.Log(point.toString());
-				player.Log(info.progress.toString());
-				//player.Log(barwidth.toString());
-				player.Seek(seekpoint);
+				if(e.type == "click" || e.buttonDown == true){
+					var point:Number = e.localX * info.progress;
+					var seekpoint:Number = (point / 100) * info.duration;
+					player.Seek(seekpoint);
+				}
 			};
 			nav.progressBar.buttonMode = true;
 			nav.progressBar.addEventListener(MouseEvent.CLICK, progressBarEvent);
-			/*var stageMouseMoveEvent:Function = function(event:MouseEvent):void
-			{ // for seeker position
-				if (info.duration > 0 && seeking)
-				{
-					//var point:int = (((nav.seeker.x - nav.progressBar.x) / barwidth) * info.duration) >> 0;
-					//if (point <= 0 || point >= (info.duration >> 0))
-						//nav.seeker.stopDrag();
-					//nav.currentTime.text = formatTime(point);
-					nav.notify.text = formatTime(info.time) + " / " + formatTime(info.duration);
-					player.Seek(point);
-					player.Log('stageMouseMoveEvent: ' + point);
-				}
-			};
-			var stageMouseUpEvent:Function = function(event:MouseEvent):void
-			{ // for stop seeking
-				if (seeking)
-				{
-					seeking = false;
-					//nav.seeker.stopDrag();
-					player.Pause();
-					player.Log('stageMouseUpEvent');
-				}
-			};
-			/*var seekerEvent:Function = function(event:MouseEvent):void
-			{
-				if (!seeking)
-				{
-					seeking = true;
-					nav.seeker.startDrag(false, rectangle);
-					player.Pause();
-				}
-			};
-			nav.seeker.buttonMode = true;
-			nav.seeker.addEventListener(MouseEvent.MOUSE_DOWN, seekerEvent);
-			this.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveEvent);
-			this.stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpEvent);*/
+			nav.progressBar.addEventListener(MouseEvent.MOUSE_MOVE, progressBarEvent);
 			
 //═ VOLUME ══════════════════════════════════════════════════════════════════════
 			var setVolume:Function = function(newVolume:Number):void
@@ -331,20 +281,9 @@ package
 			//NAVIGATOR
 			nav.y = H - 26;
 			nav.bar.width = W;
-			//barwidth = W;
-			//nav.playButton.x=nav.pauseButton.x=0;
 			nav.pauseButton.y = nav.playButton.y;
-			//nav.bar.x=0;
-			//nav.container.x=nav.bar.x+padding;
-			//var barPadding = (nav.container.height - nav.playingBar.height)*.5;
 			nav.progressBar.x = 0;
-			//if(!playing) nav.seeker.x = 0;
 			nav.progressBar.y = nav.playingBar.y = nav.bar.y - 10;
-			//nav.seeker.y =  nav.bar.y - 11;
-			//rectangle = new Rectangle(nav.progressBar.x, nav.seeker.y, W, 0);
-			//nav.playingBar.width = 0;
-			//-nav.bar.x-padding;
-			//var endPoint: int = nav.bar.x + nav.bar.width;
 			if (fullscreen)
 			{
 				nav.fullscreen.x = nav.bar.width - nav.fullscreen.width - 10;
@@ -353,11 +292,8 @@ package
 			{
 				nav.fullscreen.visible = false;
 			}
-			//endPoint = nav.volumeBar.x = endPoint - nav.volumeBar.width - padding;
 			nav.volumeBar.x = nav.playButton.width + 10;
 			nav.notify.x = nav.volumeBar.x + nav.volumeBar.width + 10;
-			//nav.container.width = endPoint-nav.container.x - padding;
-			//nav.container.width - barPadding*2;
 			nav.progressBar.width = nav.playingBar.width = W;
 			nav.progressBar.width = ((info.progress * W * .01) >> 0);
 		}
