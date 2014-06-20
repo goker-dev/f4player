@@ -143,9 +143,17 @@ package
 //═ PAUSE ══════════════════════════════════════════════════════════════════════
 			var pauseEvent:Function = function(e:Event):void
 			{
-				var isPause:Boolean = player.Pause();
-				nav.playButton.visible = isPause;
-				nav.pauseButton.visible = !isPause;
+				var isPause:Boolean;
+				if (playing)
+				{
+					isPause = player.Pause();
+					nav.playButton.visible = isPause;
+					nav.pauseButton.visible = !isPause;
+				}
+				else
+				{
+					playEvent(e);
+				}
 			};
 			overlay.addEventListener(MouseEvent.CLICK, pauseEvent);
 			nav.pauseButton.addEventListener(MouseEvent.CLICK, pauseEvent);
